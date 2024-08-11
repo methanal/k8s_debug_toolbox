@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: toolbox-pod
+spec:
+  containers:
+  - name: toolbox
+    image: methanal/k8s_debug_toolbox:0.5
+    command: ["/bin/sh", "-c", "tail -f /dev/null"]
+  restartPolicy: Never

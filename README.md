@@ -3,35 +3,42 @@ A Docker image and practices for debugging applications and clusters in Kubernet
 
 # HOWTO
 
-Pull image, or build your own.
+## Pull image, or build your own.
 ```
-docker pull --platform linux/amd64 methanal/k8s_debug_toolbox:0.3
+docker pull --platform linux/amd64 methanal/k8s_debug_toolbox:0.5
 
-docker build --platform linux/amd64 -f Dockerfile -t k8s_debug_toolbox:0.3 .
-```
-
-Run on K8S.
-```
-kubectl run toolbox-pod -n fntyn --image=k8s_debug_toolbox:0.3 --restart=Never --command -- /bin/sh -c "tail -f /dev/null"
+docker build --platform linux/amd64 -f Dockerfile -t k8s_debug_toolbox:0.5 .
 ```
 
-Debug on K8S.
+## Run on K8S
+
+### Apply a Pod
+```
+kubectl apply -f toolbox-pod.yaml
+```
+
+### Or Run a Pod
+```
+kubectl run toolbox-pod --image=k8s_debug_toolbox:0.5 --restart=Never --command -- /bin/sh -c "tail -f /dev/null"
+```
+
+## Debug on K8S.
 ```
 kubectl exec -it toolbox-pod -- /bin/bash
 ```
 
-## FAQ
+# FAQ
 
 TBD
 
-## Maintainers
+# Maintainers
 
 [@methanal](https://github.com/methanal)
 
-## Contributing
+# Contributing
 
 Feel free to dive in! [Open an issue](https://github.com/methanal/k8s_debug_toolbox/issues/new) or submit PRs.
 
-## License
+# License
 
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/methanal/k8s_debug_toolbox/blob/main/LICENSE) file for details.
